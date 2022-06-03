@@ -97,13 +97,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId)
         {
-            R.id.action_logoff->
-            {
+            R.id.action_logoff -> {
                 Firebase.auth.signOut()
                 finish()
                 true
             }else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 }
