@@ -73,6 +73,7 @@
                 android:textAlignment="center"
                 android:visibility="gone" />
 
+            <!-- Asi es como se realiza una tabla en android, en este caso muetra altura, longitud y latitud-->
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

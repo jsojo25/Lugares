@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    //Autenticacion con firebase
     private fun haceLogin() {
         val email = binding.etEmail.text.toString()
         val clave = binding.etClave.text.toString()

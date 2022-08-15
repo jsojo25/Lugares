@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- asi se definen logos en botones-->
             <ImageButton
                 android:id="@+id/bt_email"
                 android:layout_width="0dp"
