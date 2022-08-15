@@ -1,5 +1,6 @@
 package com.example.lugares.data
 
+import com.example.lugares.data.LugarDao
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase

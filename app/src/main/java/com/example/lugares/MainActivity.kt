@@ -3,8 +3,6 @@ package com.example.lugares
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import android.widget.Toast
 import com.example.lugares.databinding.ActivityMainBinding
 import com.google.firebase.FirebaseApp
@@ -19,39 +17,34 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //Se establece el enlace con la vista xml mediante el objeto binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Se inicializa Firebase y se asigna el objeto para autenticación
         FirebaseApp.initializeApp(this)
         auth = Firebase.auth
 
-        binding.btLogin.setOnClickListener(){
-            haceLogin()
-        }
-
-        binding.btRegistrar.setOnClickListener()
-        {
-            haceRegister()
-        }
+        binding.btRegistrar.setOnClickListener { haceRegister() }
+        binding.btLogin.setOnClickListener { haceLogin() }
     }
 
     private fun haceRegister() {
         val email = binding.etEmail.text.toString()
         val clave = binding.etClave.text.toString()
 
-        //Se hace el registro
+        //Se usa la función para crear un usuario por medio de correo y contraseña
         auth.createUserWithEmailAndPassword(email,clave)
-            .addOnCompleteListener(this){
-                task->
-                if(task.isSuccessful)
-                {
-                    Log.d("Creando Usuario","Registrado")
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
                     val user = auth.currentUser
                     actualiza(user)
-                }else{
-                    Log.d("Creando Usuario","Fallo")
-                    Toast.makeText(this,"Fallo en la creacion del usuario",Toast.LENGTH_LONG)
+                } else {
+                    Toast.makeText(baseContext,
+                        getString(R.string.msg_fallo_registro),
+                        Toast.LENGTH_SHORT).show()
                     actualiza(null)
                 }
             }
@@ -61,17 +54,16 @@ class MainActivity : AppCompatActivity() {
         val email = binding.etEmail.text.toString()
         val clave = binding.etClave.text.toString()
 
-        //Se hace el login
+        //Se usa la función para crear un usuario por medio de correo y contraseña
         auth.signInWithEmailAndPassword(email,clave)
-            .addOnCompleteListener(this){
-                task->
-                if(task.isSuccessful){
-                    Log.d("Autenticado","Autenticado")
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
                     val user = auth.currentUser
                     actualiza(user)
-                }else{
-                    Log.d("Autenticado","Fallo")
-                    Toast.makeText(baseContext,"Fallo",Toast.LENGTH_LONG)
+                } else {
+                    Toast.makeText(baseContext,
+                        getString(R.string.msg_fallo_login),
+                        Toast.LENGTH_SHORT).show()
                     actualiza(null)
                 }
             }
@@ -83,7 +75,6 @@ class MainActivity : AppCompatActivity() {
         {
             val intent = Intent(this,Principal::class.java)
             startActivity(intent)
-
         }
     }
 
@@ -94,14 +85,4 @@ class MainActivity : AppCompatActivity() {
         actualiza(usuario)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId)
-        {
-            R.id.action_logoff -> {
-                Firebase.auth.signOut()
-                finish()
-                true
-            }else -> super.onOptionsItemSelected(item)
-        }
-    }
 }

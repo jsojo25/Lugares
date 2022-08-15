@@ -6,21 +6,19 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings.Global.getString
 import android.view.*
+import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.lugares.R
 import com.example.lugares.databinding.FragmentUpdateLugarBinding
 import com.example.lugares.model.Lugar
 import com.example.lugares.viewModel.LugarViewModel
+import java.nio.file.Files.delete
 
-class UpdateLugarFragment {
+class UpdateLugarFragment : Fragment() {
     //Se deciben los parametros pasados por argumento
     private val args by navArgs<UpdateLugarFragmentArgs>()
 
