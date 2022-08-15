@@ -35,10 +35,14 @@ class AddLugarFragment : Fragment() {
         val correo = binding.etCorreo.text.toString()
         val telefono = binding.etTelefono.text.toString()
         val web = binding.etWeb.text.toString()
+        val latitud = binding.etLatitud.text.toString().toDouble()
+        val longitud= binding.etLongitud.text.toString().toDouble()
+        val altura = binding.etAltura.text.toString().toDouble()
+
 
         if(validos(nombre,correo,telefono,web))
         {
-            val lugar = Lugar(0,nombre,correo,telefono,0.0,0.0,0.0,"","")
+            val lugar = Lugar("",nombre,correo,telefono,latitud,longitud,altura,"","")
             lugarViewModel.addLugar(lugar)
             Toast.makeText(requireContext(),getString(R.string.msgLugarAgregado),Toast.LENGTH_LONG).show()
         }
