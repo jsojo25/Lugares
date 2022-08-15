@@ -1,18 +1,16 @@
 package com.example.lugares.data
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.room.*
-import com.example.lugares.model.Lugar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.ktx.Firebase
+import com.example.lugares.model.Lugar
 
-//@Dao
 class LugarDao {
+
     private val coleccion1 = "lugaresApp"
     private val usuario= Firebase.auth.currentUser?.email.toString()
     private val coleccion2 = "misLugares"

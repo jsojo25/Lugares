@@ -39,11 +39,11 @@ class UpdateLugarFragment : Fragment() {
         binding.etCorreo.setText(args.lugar.correo)
         binding.etTelefono.setText(args.lugar.telefono)
         binding.etWeb.setText(args.lugar.web)
-        binding.tvAltura.setText(args.lugar.altura.toString())
-        binding.tvLatitud.setText(args.lugar.latitud.toString())
-        binding.tvLongitud.setText(args.lugar.longitud.toString())
+        binding.tvAltura.text=args.lugar.altura.toString()
+        binding.tvLatitud.text=args.lugar.latitud.toString()
+        binding.tvLongitud.text=args.lugar.longitud.toString()
 
-        binding.btActualizar.setOnClickListener { updateLugar() }
+        binding.btUpdateLugar.setOnClickListener { updateLugar() }
 
         binding.btEmail.setOnClickListener { escribirCorreo() }
         binding.btPhone.setOnClickListener { realizarLlamada() }
@@ -58,7 +58,7 @@ class UpdateLugarFragment : Fragment() {
     private fun verWeb() {
         val recurso = binding.etWeb.text.toString()
         if (recurso.isNotEmpty()) {
-            val accion = Intent(Intent.ACTION_VIEW, Uri.parse("http://$recurso"))
+            val accion = Intent(Intent.ACTION_VIEW,Uri.parse("http://$recurso"))
             startActivity(accion) //Efectivamente se carga el app de correo
         } else {
             Toast.makeText(requireContext(),getString(R.string.msg_datos),
@@ -92,8 +92,7 @@ class UpdateLugarFragment : Fragment() {
             val accion = Intent(Intent.ACTION_SEND)
             accion.type="message/rfc822"
             accion.putExtra(Intent.EXTRA_EMAIL,arrayOf(recurso))
-            accion.putExtra(
-                Intent.EXTRA_SUBJECT,
+            accion.putExtra(Intent.EXTRA_SUBJECT,
                 getString(R.string.msg_saludos)+" "+binding.etNombre.text)
             accion.putExtra(Intent.EXTRA_TEXT,getString(R.string.msg_mensaje_correo))
             startActivity(accion) //Efectivamente se carga el app de correo
@@ -116,7 +115,7 @@ class UpdateLugarFragment : Fragment() {
     }
 
     private fun deleteLugar() {
-        val pantalla= AlertDialog.Builder(requireContext())
+        val pantalla=AlertDialog.Builder(requireContext())
 
         pantalla.setTitle(R.string.delete)
         pantalla.setMessage(getString(R.string.seguroBorrar)+" ${args.lugar.nombre}?")
@@ -138,14 +137,15 @@ class UpdateLugarFragment : Fragment() {
         val telefono=binding.etTelefono.text.toString()
         val web=binding.etWeb.text.toString()
         if (nombre.isNotEmpty()) { //Si puedo crear un lugar
-            val lugar= Lugar(args.lugar.id,nombre,correo,telefono,web,args.lugar.latitud,args.lugar.longitud,args.lugar.altura,"","")
+            val lugar= Lugar(args.lugar.id,nombre,correo,telefono,web,0.0,
+                0.0,0.0,"","")
 
-            lugarViewModel.updateLugar(lugar)
+            lugarViewModel.saveLugar(lugar)
 
-            Toast.makeText(requireContext(),getString(R.string.msg_lugar_update), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.msg_lugar_update),Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateLugarFragment_to_nav_lugar)
         } else {  //Mensaje de error...
-            Toast.makeText(requireContext(),getString(R.string.msg_data), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_SHORT).show()
         }
     }
 

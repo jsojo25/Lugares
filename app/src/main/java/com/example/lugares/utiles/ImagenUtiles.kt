@@ -10,7 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.FileProvider
-import com.lugares_v.BuildConfig
+import com.example.lugares.BuildConfig
 import java.io.File
 
 class ImagenUtiles (

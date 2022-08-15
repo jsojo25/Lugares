@@ -19,7 +19,7 @@ class LugarAdapter : RecyclerView.Adapter<LugarAdapter.LugarViewHolder>()
             itemBinding.tvNombre.text = lugar.nombre
             itemBinding.tvCorreo.text = lugar.correo
             itemBinding.tvTelefono.text = lugar.telefono
-            //itemBinding.tvWeb.text = lugar.web
+            itemBinding.tvWeb.text = lugar.web
             itemBinding.vistaFila.setOnClickListener {
                 val accion = LugarFragmentDirections
                     .actionNavLugarToUpdateLugarFragment(lugar)

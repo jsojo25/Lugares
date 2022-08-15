@@ -18,51 +18,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/msg_nombre"
-            android:textSize="24sp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/fila_imagen"
+            android:id="@+id/imagen"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/msg_imagen"
-            android:scaleType="centerCrop"
+            android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_nombre"
-            tools:ignore="ImageContrasCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_correo"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginTop="24dp"
-            android:ellipsize="end"
-            android:maxLines="4"
-            android:text="@string/msg_correo"
-            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fila_imagen"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nombre"
-            />
+            app:layout_constraintStart_toEndOf="@+id/imagen"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nombre" />
 
         <TextView
             android:id="@+id/tv_telefono"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginTop="24dp"
-            android:ellipsize="end"
-            android:text="@string/msg_Telefono"
-            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_correo"
-            app:layout_constraintTop_toBottomOf="@+id/tv_correo"
-            />
+            app:layout_constraintStart_toEndOf="@+id/imagen"
+            app:layout_constraintTop_toBottomOf="@+id/tv_correo" />
+
+        <TextView
+            android:id="@+id/tv_web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imagen"
+            app:layout_constraintTop_toBottomOf="@+id/tv_telefono" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

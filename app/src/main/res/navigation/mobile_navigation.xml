@@ -48,6 +48,6 @@
             app:destination="@id/nav_lugar" />
         <argument
             android:name="lugar"
-            app:argType="com.lugares_v.model.Lugar" />
+            app:argType="com.lugares.model.Lugar" />
     </fragment>
 </navigation>
